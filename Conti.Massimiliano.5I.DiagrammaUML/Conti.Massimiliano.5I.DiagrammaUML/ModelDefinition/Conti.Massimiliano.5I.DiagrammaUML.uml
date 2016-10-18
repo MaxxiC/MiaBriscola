@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel"
+  dslVersion="1.0.0.0"
+  Id="5796923e-e17c-4168-824f-87ee7128ce9c"
+  name="Conti.Massimiliano.5I.DiagrammaUML" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <actor
+        Id="0f581d87-06f1-44f5-9430-d1907c464353"
+        name="Utente"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="d14a1a79-1acc-4144-a677-28b8efc1c445"
+        name="Inizio di una nuova partita"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="222846eb-5ee0-40dc-87c9-1d9343c7f1c3">
+            <useCaseMoniker
+              Id="ad811877-d176-487c-bc37-472bf1d7f17b"
+              LastKnownName="Mischiaggio del mazzo"
+              LastKnownLocation="Conti.Massimiliano.5I.DiagrammaUML.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="ad811877-d176-487c-bc37-472bf1d7f17b"
+        name="Mischiaggio del mazzo"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="d010d22b-20dd-4dbb-a0e1-663d089a2254"
+        name="Gioca una carta in base al valore e al seme "
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="35270fe7-a47e-471b-b3ea-fa14e2750821">
+            <useCaseMoniker
+              Id="885d56bc-b9d1-4f01-9702-45ff421e45d2"
+              LastKnownName="Calcolo della carta vincente"
+              LastKnownLocation="Conti.Massimiliano.5I.DiagrammaUML.uml" />
+          </include>
+          <include
+            Id="84d4fd1f-103f-487a-8da8-53799d25823e">
+            <useCaseMoniker
+              Id="31dfb895-1a1b-47bf-a53f-af2dd71ff015"
+              LastKnownName="Visualizzazione e incremento del punteggio"
+              LastKnownLocation="Conti.Massimiliano.5I.DiagrammaUML.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="885d56bc-b9d1-4f01-9702-45ff421e45d2"
+        name="Calcolo della carta vincente"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="31dfb895-1a1b-47bf-a53f-af2dd71ff015"
+        name="Visualizzazione e incremento del punteggio"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="54be0d7f-e3d0-4bdd-95ea-901b4af1a466"
+        name="Ricezione delle prime 3 carte"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="da3a2538-db75-4da2-bb39-159d78bb4888">
+            <useCaseMoniker
+              Id="add85ce1-5770-4960-8077-a01f695186d1"
+              LastKnownName="Visualizzazione delle carte"
+              LastKnownLocation="Conti.Massimiliano.5I.DiagrammaUML.uml" />
+          </extend>
+        </extendedCases>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="add85ce1-5770-4960-8077-a01f695186d1"
+        name="Visualizzazione delle carte"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="9b446bd9-edef-4b03-b933-d9c5ddbd7e45"
+        name="Alla fine di ogni giocata (eccetto le ultime 3) riceve una carta"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="bdfa10a8-a1ed-4815-83ae-5b78e30644b1">
+            <useCaseMoniker
+              Id="add85ce1-5770-4960-8077-a01f695186d1"
+              LastKnownName="Visualizzazione delle carte"
+              LastKnownLocation="Conti.Massimiliano.5I.DiagrammaUML.uml" />
+          </extend>
+        </extendedCases>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="88ec46f0-00a3-4acd-9518-347a7f8fad86"
+        name="Utente1"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="9d6028a0-d819-4f67-a720-711258c152f8"
+            isDerived="false"
+            sourceEndRoleName="Utente1"
+            targetEndRoleName="Inizio di una nuova partita"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="d14a1a79-1acc-4144-a677-28b8efc1c445"
+              LastKnownName="Inizio di una nuova partita"
+              LastKnownLocation="Conti.Massimiliano.5I.DiagrammaUML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0a8233a2-5039-4df8-84b0-5bef5409a177"
+                  name="Utente1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="be7e3126-292a-4bb9-bbf9-858a3d4bb4cf"
+                  name="Inizio di una nuova partita"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="ed914052-547e-4e6c-9019-48c9f2049b6e"
+            isDerived="false"
+            sourceEndRoleName="Utente1"
+            targetEndRoleName="Ricezione delle prime 3 carte"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="54be0d7f-e3d0-4bdd-95ea-901b4af1a466"
+              LastKnownName="Ricezione delle prime 3 carte"
+              LastKnownLocation="Conti.Massimiliano.5I.DiagrammaUML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a82910c1-ec13-47a5-9e16-84777e0782d6"
+                  name="Utente1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0b71fd39-5dd0-4243-b64b-08fcfd02ca4a"
+                  name="Ricezione delle prime 3 carte"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="885a562a-3da2-44df-9b96-ea94a07ca91e"
+            isDerived="false"
+            sourceEndRoleName="Utente1"
+            targetEndRoleName="Alla fine di ogni giocata (eccetto le ultime 3) riceve una carta"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="9b446bd9-edef-4b03-b933-d9c5ddbd7e45"
+              LastKnownName="Alla fine di ogni giocata (eccetto le ultime 3) riceve una carta"
+              LastKnownLocation="Conti.Massimiliano.5I.DiagrammaUML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="dcd934e3-1fd5-49b5-b088-86dc2ccbf15d"
+                  name="Utente1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="268a830f-5293-4325-a959-c64daec5db67"
+                  name="Alla fine di ogni giocata (eccetto le ultime 3) riceve una carta"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="f37d260b-db80-4264-bb84-e8dff0cb4f16"
+            isDerived="false"
+            sourceEndRoleName="Utente1"
+            targetEndRoleName="Gioca una carta in base al valore e al seme "
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="d010d22b-20dd-4dbb-a0e1-663d089a2254"
+              LastKnownName="Gioca una carta in base al valore e al seme "
+              LastKnownLocation="Conti.Massimiliano.5I.DiagrammaUML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="76b2f0d6-ffd1-4c39-b19f-626599cf4d55"
+                  name="Utente1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3217e6c9-c01f-4154-bd09-02a27a094e91"
+                  name="Gioca una carta in base al valore e al seme "
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="8cb31d53-223a-447b-98c4-957b819a3b19"
+        name="CPU"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="041eef18-e5c6-4731-a5fa-9574c9be609b"
+            isDerived="false"
+            sourceEndRoleName="CPU"
+            targetEndRoleName="Gioca una carta in base al valore e al seme "
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="d010d22b-20dd-4dbb-a0e1-663d089a2254"
+              LastKnownName="Gioca una carta in base al valore e al seme "
+              LastKnownLocation="Conti.Massimiliano.5I.DiagrammaUML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="26ff2c9f-5cff-4e26-9214-e7020f0c3cf2"
+                  name="CPU"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="60cb8f95-3efe-49c4-ba8f-2ef1c610beb8"
+                  name="Gioca una carta in base al valore e al seme "
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="1d39c4ea-17e9-4ef6-9351-af508c1d033c"
+            isDerived="false"
+            sourceEndRoleName="CPU"
+            targetEndRoleName="Ricezione delle prime 3 carte"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="54be0d7f-e3d0-4bdd-95ea-901b4af1a466"
+              LastKnownName="Ricezione delle prime 3 carte"
+              LastKnownLocation="Conti.Massimiliano.5I.DiagrammaUML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f457d2e0-27fa-457d-b2d2-c0c0606c28a0"
+                  name="CPU"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a27d4483-ec4e-4072-8205-826489ea0b42"
+                  name="Ricezione delle prime 3 carte"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="c07d716e-4b05-4844-8141-8245cc330cb5"
+            isDerived="false"
+            sourceEndRoleName="CPU"
+            targetEndRoleName="Alla fine di ogni giocata (eccetto le ultime 3) riceve una carta"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="9b446bd9-edef-4b03-b933-d9c5ddbd7e45"
+              LastKnownName="Alla fine di ogni giocata (eccetto le ultime 3) riceve una carta"
+              LastKnownLocation="Conti.Massimiliano.5I.DiagrammaUML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f1c511c5-5389-4a50-ae6b-3578fdfb9c96"
+                  name="CPU"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="bc9e02ed-b18f-4ced-a3d9-82ef21ea8f08"
+                  name="Alla fine di ogni giocata (eccetto le ultime 3) riceve una carta"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

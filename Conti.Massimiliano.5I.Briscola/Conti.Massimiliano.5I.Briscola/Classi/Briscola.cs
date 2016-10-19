@@ -13,7 +13,7 @@ namespace Conti.Massimiliano._5I.Briscola
         public Utente CPU { get; }
         public Utente Centro { get; }
         public Carta CardBriscola { get; }
-
+        
 
 
         public Briscola()

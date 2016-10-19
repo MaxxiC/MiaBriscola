@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Conti.Massimiliano._5I.Briscola"
         mc:Ignorable="d"
-        Title="MainWindow"    Height="550"    Width="725"
-                           MinHeight="550" MinWidth="725"
+        Title="Conti Massimiliano 5I Briscola"  Height="550"    Width="725"
+                                             MinHeight="550" MinWidth="725"
         WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.Background>

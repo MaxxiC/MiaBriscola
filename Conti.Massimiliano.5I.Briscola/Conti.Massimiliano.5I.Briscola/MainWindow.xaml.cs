@@ -29,14 +29,13 @@ namespace Conti.Massimiliano._5I.Briscola
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //IniziaPartita();
-
-            Brscl = new Briscola();
-            AggiornaImmagini(0);
+            IniziaPartita();
         }
 
         private void IniziaPartita()
         {
+            Brscl = new Briscola();
+            AggiornaImmagini(0);
             //btnCarta1.Source = "Immagini/Bastoni (1).png";
             //btnCarta1.Background = new ImageBrush(new BitmapImage(new Uri("pack://siteoforigin:,,,/Immagini/Denari (1).png")));
             //btnCarta1.Background = U1.MieCarte[0].percorso;
@@ -71,17 +70,20 @@ namespace Conti.Massimiliano._5I.Briscola
 
         private void btnCarta1_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            Brscl.UsaCarta(1);
+            AggiornaImmagini(0);
         }
 
         private void btnCarta2_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            Brscl.UsaCarta(2);
+            AggiornaImmagini(0);
         }
 
         private void btnCarta3_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            Brscl.UsaCarta(3);
+            AggiornaImmagini(0);
         }
     }
 }

@@ -11,9 +11,13 @@ namespace Conti.Massimiliano._5I.Briscola
         public Mazzo Mazzo1 { get; }
         public Utente Ut1 { get; }
         public Utente CPU { get; }
-        public Utente Centro { get; }
-        public Carta CardBriscola { get; }
-        
+
+
+
+        public Carta C1 { get; set; }
+        public Carta C2 { get; set; }
+        public Carta CardBriscola { get; set; }
+
 
 
         public Briscola()
@@ -21,24 +25,44 @@ namespace Conti.Massimiliano._5I.Briscola
             Mazzo1 = new Mazzo();
             Ut1 = new Utente(Mazzo1.GetCartaIniziale());
             CPU = new Utente(Mazzo1.GetCartaIniziale());
-            Centro = new Utente();
 
-            CardBriscola = Mazzo1.GetCarta();
+            GetBriscola();
         }
 
-        //public void GetBriscola()
-        //{
-        //    Random rand = new Random();
+        public void GetBriscola()
+        {
+            CardBriscola = Mazzo1.GetCarta();
+            return;
+        }
 
-        //    Briscola = ListMazzo[rand.Next(0, 39)];
+        public void UsaCarta(int nCarta)
+        {
+            C1 = Ut1.MieCarte[nCarta];
 
-        //    while (Briscola.Usata == true)
-        //    {
-        //        Briscola = ListMazzo[rand.Next(0, 39)];
+            List<Carta> nBrisc = new List<Carta>();
+            if (Ut1.MieCarte[nCarta].Seme == CardBriscola.Seme)
+            {
+                if (CPU.MieCarte[0].Seme == CardBriscola.Seme)
+                    nBrisc.Add(CPU.MieCarte[0]);
+                if(CPU.MieCarte[1].Seme == CardBriscola.Seme)
+                    nBrisc.Add(CPU.MieCarte[1]);
+                if (CPU.MieCarte[2].Seme == CardBriscola.Seme)
+                    nBrisc.Add(CPU.MieCarte[2]);
 
-        //    }
-        //    Briscola.Usata = true;
-        //    return;
-        //}
+
+                if (nBrisc.Count == 0)
+                {
+                }
+
+
+            }
+            else
+            { }
+        }
+
+        public void Continua(int nnCarta)
+        {
+
+        }
     }
 }

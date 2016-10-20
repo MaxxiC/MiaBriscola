@@ -25,10 +25,13 @@
             <Image Height="100" Width="60" Margin="5" Source="Immagini/retro.png" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="1">
+            <Label Content="                        " />
             <Image Height="120" Width="80" Margin="5" Source="Immagini/retro.png" />
             <Image Height="100" Width="60" Margin="5" Name="btnBriscola"/>
-            <Label Content="                                         " />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
             <Image Height="100" Width="60" Margin="5" Name="btnCentro1"/>
             <Image Height="100" Width="60" Margin="5" Name="btnCentro2"/>
         </StackPanel>

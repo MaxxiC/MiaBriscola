@@ -13,18 +13,43 @@ namespace Conti.Massimiliano._5I.Briscola
         public string Seme { get; set; }
         public int Valore { get; set; }
         public bool Usata { get; set; }
-        
-        public string imgCard { get; set; }
+
+        public int punti { get; set; }
 
         public BitmapImage percorso { get; set; }
-        
+
 
         public Carta(string sm, int vl)
         {
             Seme = sm;
             Valore = vl;
 
-            imgCard = "/Immagini/" + Seme + " (" + Valore.ToString() + ").png";
+            if (vl == 1)
+                punti = 11;
+            else
+            {
+                if (vl == 3)
+                    punti = 10;
+                else
+                {
+                    if (vl == 10)
+                        punti = 4;
+                    else
+                    {
+                        if (vl == 9)
+                            punti = 3;
+                        else
+                        {
+                            if (vl == 8)
+                                punti = 2;
+                            else
+                                punti = 0;
+                        }
+                    }
+                }
+            }
+
+            string imgCard = "/Immagini/" + Seme + " (" + Valore.ToString() + ").png";
             //pack://siteoforigin:,,,
             percorso = new BitmapImage(new Uri(imgCard, UriKind.Relative));
         }

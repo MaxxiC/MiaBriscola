@@ -41,48 +41,51 @@ namespace Conti.Massimiliano._5I.Briscola
             //btnCarta1.Background = U1.MieCarte[0].percorso;
         }
 
-        private void AggiornaImmagini(int nCarta)
+        public void AggiornaImmagini(int nCarta)
         {
             btnCarta1.Source = Brscl.Ut1.MieCarte[0].percorso;
             btnCarta2.Source = Brscl.Ut1.MieCarte[1].percorso;
             btnCarta3.Source = Brscl.Ut1.MieCarte[2].percorso;
 
             btnBriscola.Source = Brscl.CardBriscola.percorso;
-
-            //switch (nCarta)
-            //{
-            //    case 1:
-            //        break;
-            //    case 2:
-            //        break;
-            //    case 3:
-            //        break;
-            //    case 7:
-            //        break;
-            //    case 8:
-            //        break;
-            //    case 9:
-            //        break;
-            //    default:
-            //        break;
-            //}
         }
 
         private void btnCarta1_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Brscl.UsaCarta(1);
-            AggiornaImmagini(0);
+            SelCarta(0);
         }
 
         private void btnCarta2_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Brscl.UsaCarta(2);
-            AggiornaImmagini(0);
+            SelCarta(1);
         }
 
         private void btnCarta3_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Brscl.UsaCarta(3);
+            SelCarta(2);
+        }
+
+        private void SelCarta(int nCarta)
+        {
+            switch (nCarta)
+            {
+                case 0:
+                    btnCentro1.Source = btnCarta1.Source;
+                    btnCarta1.Source = null;
+                    break;
+                case 1:
+                    btnCentro1.Source = btnCarta2.Source;
+                    btnCarta2.Source = null;
+                    break;
+                case 2:
+                    btnCentro1.Source = btnCarta3.Source;
+                    btnCarta3.Source = null;
+                    break;
+                default:
+                    break;
+            }
+            
+            Brscl.UsaCarta(nCarta);
             AggiornaImmagini(0);
         }
     }

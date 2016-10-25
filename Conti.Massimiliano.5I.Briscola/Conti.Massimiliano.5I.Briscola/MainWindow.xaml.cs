@@ -47,12 +47,16 @@ namespace Conti.Massimiliano._5I.Briscola
             btnCarta2.Source = Brscl.Ut1.MieCarte[1].percorso;
             btnCarta3.Source = Brscl.Ut1.MieCarte[2].percorso;
 
+            btnCentro1.Source = Brscl.C1.percorso;
+            btnCentro2.Source = Brscl.C2.percorso;
+
             btnBriscola.Source = Brscl.CardBriscola.percorso;
         }
 
         private void btnCarta1_MouseDown(object sender, MouseButtonEventArgs e)
         {
             SelCarta(0);
+            wait(2);
         }
 
         private void btnCarta2_MouseDown(object sender, MouseButtonEventArgs e)
@@ -70,8 +74,8 @@ namespace Conti.Massimiliano._5I.Briscola
             switch (nCarta)
             {
                 case 0:
-                    btnCentro1.Source = btnCarta1.Source;
-                    btnCarta1.Source = null;
+                    Brscl.C1.percorso = null;
+                    Brscl.Ut1.MieCarte[0].percorso = null;
                     break;
                 case 1:
                     btnCentro1.Source = btnCarta2.Source;
@@ -87,6 +91,17 @@ namespace Conti.Massimiliano._5I.Briscola
             
             Brscl.UsaCarta(nCarta);
             AggiornaImmagini(0);
+        }
+
+        private void wait(int x)
+        {
+            DateTime a = DateTime.Now;
+            DateTime b = a.AddSeconds(x);
+
+            while (a < b)
+            {
+                a = DateTime.Now;
+            }
         }
     }
 }

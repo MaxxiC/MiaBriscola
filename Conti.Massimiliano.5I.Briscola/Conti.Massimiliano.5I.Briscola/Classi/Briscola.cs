@@ -26,6 +26,9 @@ namespace Conti.Massimiliano._5I.Briscola
             Ut1 = new Utente(Mazzo1.GetCartaIniziale());
             CPU = new Utente(Mazzo1.GetCartaIniziale());
 
+            C1 = new Carta();
+            C2 = new Carta();
+
             GetBriscola();
         }
 

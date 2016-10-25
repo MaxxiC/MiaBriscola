@@ -19,6 +19,13 @@ namespace Conti.Massimiliano._5I.Briscola
         public BitmapImage percorso { get; set; }
 
 
+        public Carta()
+        {
+            Seme = "";
+            Valore = 0;
+            punti = 0;
+            percorso = null;
+        }
         public Carta(string sm, int vl)
         {
             Seme = sm;

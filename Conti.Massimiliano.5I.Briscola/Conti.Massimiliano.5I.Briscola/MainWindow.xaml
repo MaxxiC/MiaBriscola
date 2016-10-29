@@ -20,9 +20,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
-            <Image Height="100" Width="60" Margin="5" Source="Immagini/retro.png" />
-            <Image Height="100" Width="60" Margin="5" Source="Immagini/retro.png" />
-            <Image Height="100" Width="60" Margin="5" Source="Immagini/retro.png" />
+            <Image Height="100" Width="60" Margin="5" Source="Immagini/retro.png" Name="btnCPU1" />
+            <Image Height="100" Width="60" Margin="5" Source="Immagini/retro.png" Name="btnCPU2" />
+            <Image Height="100" Width="60" Margin="5" Source="Immagini/retro.png" Name="btnCPU3" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="1">
@@ -42,5 +42,9 @@
             <Image Height="100" Width="60" Margin="5" Name="btnCarta3" Source="Immagini/retro.png" MouseDown="btnCarta3_MouseDown" />
         </StackPanel>
 
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Grid.Row="2">
+            <TextBlock Text="Punti di " FontSize="20" Width="125" />
+            <TextBlock Text="" Width="100" FontSize="20" Name="txtPuntiGiocatore" />
+        </StackPanel>
     </Grid>
 </Window>

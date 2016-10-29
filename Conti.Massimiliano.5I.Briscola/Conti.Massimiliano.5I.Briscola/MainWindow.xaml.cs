@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
+using System.ComponentModel;
 
 namespace Conti.Massimiliano._5I.Briscola
 {
@@ -26,37 +28,42 @@ namespace Conti.Massimiliano._5I.Briscola
         }
 
         private Briscola Brscl;
+        public BackgroundWorker bw;
+        static public Random rnd = new Random();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             IniziaPartita();
+            bw = new BackgroundWorker();
+            bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+            bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(AggiornaImmagini);
         }
 
         private void IniziaPartita()
         {
             Brscl = new Briscola();
-            AggiornaImmagini(0);
-            //btnCarta1.Source = "Immagini/Bastoni (1).png";
-            //btnCarta1.Background = new ImageBrush(new BitmapImage(new Uri("pack://siteoforigin:,,,/Immagini/Denari (1).png")));
-            //btnCarta1.Background = U1.MieCarte[0].percorso;
+            AggiornaImmagini();
+            txtPuntiGiocatore.Text = Brscl.Ut1.Punteggio.ToString();
         }
 
-        public void AggiornaImmagini(int nCarta)
+        public void AggiornaImmagini(object sender = null, RunWorkerCompletedEventArgs e = null)
         {
             btnCarta1.Source = Brscl.Ut1.MieCarte[0].percorso;
             btnCarta2.Source = Brscl.Ut1.MieCarte[1].percorso;
             btnCarta3.Source = Brscl.Ut1.MieCarte[2].percorso;
-
+            
             btnCentro1.Source = Brscl.C1.percorso;
             btnCentro2.Source = Brscl.C2.percorso;
 
             btnBriscola.Source = Brscl.CardBriscola.percorso;
+
+            txtPuntiGiocatore.Text = Brscl.Ut1.Punteggio.ToString();
+            return;
         }
 
         private void btnCarta1_MouseDown(object sender, MouseButtonEventArgs e)
         {
             SelCarta(0);
-            wait(2);
         }
 
         private void btnCarta2_MouseDown(object sender, MouseButtonEventArgs e)
@@ -69,39 +76,36 @@ namespace Conti.Massimiliano._5I.Briscola
             SelCarta(2);
         }
 
-        private void SelCarta(int nCarta)
+        private void SelCarta(int nCarta, int nAzioni = 0)
         {
-            switch (nCarta)
-            {
-                case 0:
-                    Brscl.C1.percorso = null;
-                    Brscl.Ut1.MieCarte[0].percorso = null;
-                    break;
-                case 1:
-                    btnCentro1.Source = btnCarta2.Source;
-                    btnCarta2.Source = null;
-                    break;
-                case 2:
-                    btnCentro1.Source = btnCarta3.Source;
-                    btnCarta3.Source = null;
-                    break;
-                default:
-                    break;
-            }
-            
-            Brscl.UsaCarta(nCarta);
-            AggiornaImmagini(0);
+            //bw.RunWorkerAsync();
+            Brscl.SetCentro1(nCarta);
+            AggiornaImmagini();
+
+            //si potrebbe aspettare 1 secondo
+            Brscl.Continua();
+            AggiornaImmagini();
+
+            int qw = Brscl.DopoConfronto();
+
+            if (qw == 1)
+                MessageBox.Show("Vince Giocatore");
+            if (qw == 2)
+                MessageBox.Show("Vince CPU");
+
+            AggiornaImmagini();
         }
 
-        private void wait(int x)
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            DateTime a = DateTime.Now;
-            DateTime b = a.AddSeconds(x);
+            BackgroundWorker worker = sender as BackgroundWorker;
 
-            while (a < b)
-            {
-                a = DateTime.Now;
-            }
+            Thread.Sleep(2000);
         }
+
+        //public async void Aspetta(int mlSec)
+        //{
+        //    await Task.Delay(mlSec);
+        //}
     }
 }

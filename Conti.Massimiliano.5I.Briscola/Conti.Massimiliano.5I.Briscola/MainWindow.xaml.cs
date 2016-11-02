@@ -33,7 +33,6 @@ namespace Conti.Massimiliano._5I.Briscola
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            IniziaPartita();
             bw = new BackgroundWorker();
             bw.DoWork += new DoWorkEventHandler(bw_DoWork);
             bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(AggiornaImmagini);
@@ -43,21 +42,34 @@ namespace Conti.Massimiliano._5I.Briscola
         {
             Brscl = new Briscola();
             AggiornaImmagini();
-            txtPuntiGiocatore.Text = Brscl.Ut1.Punteggio.ToString();
         }
 
         public void AggiornaImmagini(object sender = null, RunWorkerCompletedEventArgs e = null)
         {
+            //Carte nel mazzo
+            lblNcarte.Content = "                        " + Brscl.Mazzo1.NCarteRimaste.ToString();
+
+            //Le 3 carte del giocatore
             btnCarta1.Source = Brscl.Ut1.MieCarte[0].percorso;
             btnCarta2.Source = Brscl.Ut1.MieCarte[1].percorso;
             btnCarta3.Source = Brscl.Ut1.MieCarte[2].percorso;
-            
+
+            //2 Carte centrali
             btnCentro1.Source = Brscl.C1.percorso;
             btnCentro2.Source = Brscl.C2.percorso;
 
-            btnBriscola.Source = Brscl.CardBriscola.percorso;
+            //3 Carte CPU
+            btnCPU1.Source = Brscl.CPU.MieCarte[0].percorso;
+            btnCPU2.Source = Brscl.CPU.MieCarte[1].percorso;
+            btnCPU3.Source = Brscl.CPU.MieCarte[2].percorso;
 
+            //Briscola e Mazzo
+            btnBriscola.Source = Brscl.CardBriscola.percorso;
+            btnMazzo.Source = Brscl.PercorsoMazzo;
+
+            //Punteggi
             txtPuntiGiocatore.Text = Brscl.Ut1.Punteggio.ToString();
+            txtPuntiCPU.Text = Brscl.CPU.Punteggio.ToString();
             return;
         }
 
@@ -89,23 +101,45 @@ namespace Conti.Massimiliano._5I.Briscola
             int qw = Brscl.DopoConfronto();
 
             if (qw == 1)
-                MessageBox.Show("Vince Giocatore");
+                MessageBox.Show("Vince " + txtNomeGiocatore.Text);
             if (qw == 2)
                 MessageBox.Show("Vince CPU");
+            if (qw == 3)
+                MessageBox.Show("Ultimo Turno vinto da " + txtNomeGiocatore.Text);
+            if (qw == 4)
+                MessageBox.Show("Ultimo Turno vinto da CPU");
 
+            Brscl.Continua();
             AggiornaImmagini();
+
+            ////////////////////////////////
+
+            int punti = Brscl.Ut1.Punteggio + Brscl.CPU.Punteggio;
+            string fine = "tot. punti = " + punti.ToString();
+            if (qw > 2)
+            {
+                if (Brscl.Ut1.Punteggio > Brscl.CPU.Punteggio)
+                    MessageBox.Show("Partita vinta da " + txtNomeGiocatore.Text + "   " + fine);
+                else
+                    MessageBox.Show("Partita vinta da CPU" + fine);
+
+
+            }
+
+            //bw.RunWorkerAsync();
         }
 
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-
             Thread.Sleep(2000);
         }
 
-        //public async void Aspetta(int mlSec)
-        //{
-        //    await Task.Delay(mlSec);
-        //}
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TabInizio.Visibility = Visibility.Hidden;
+            IniziaPartita();
+            TabPartita.Visibility = Visibility.Visible;
+        }
     }
 }

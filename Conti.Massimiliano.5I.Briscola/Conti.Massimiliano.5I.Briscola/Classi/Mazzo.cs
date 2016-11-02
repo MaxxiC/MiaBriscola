@@ -40,7 +40,7 @@ namespace Conti.Massimiliano._5I.Briscola
 
             ListMazzo = ListMazzo.OrderBy(x => Guid.NewGuid()).ToList();
 
-            NCarteRimaste = 39;
+            NCarteRimaste = 40;
         }
 
 

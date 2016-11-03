@@ -9,7 +9,7 @@
                                              MinHeight="550" MinWidth="725"
         WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <TabControl>
-        <TabItem Name="TabInizio" Visibility="Visible">
+        <!--<TabItem Name="TabInizio" Visibility="Hidden">
             <Grid>
                 <Grid.Background>
                     <ImageBrush ImageSource="Immagini/sfondo.jpg" />
@@ -21,8 +21,8 @@
                     <Button Width="100" Content="Inizia Partita" Click="Button_Click" />
                 </StackPanel>
             </Grid>
-        </TabItem>
-        <TabItem Name="TabPartita" Visibility="Hidden">
+        </TabItem>-->
+        <TabItem Name="TabPartita" Visibility="Visible">
 
             <Grid>
                 <Grid.Background>
@@ -52,6 +52,10 @@
                     <Image Height="100" Width="60" Margin="5" Name="btnCentro2"/>
                 </StackPanel>
 
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1">
+                    <Label Content="" Name="lblVinto" />
+                </StackPanel>
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
                     <Image Height="100" Width="60" Margin="5" Name="btnCarta1" Source="Immagini/retro.png" MouseDown="btnCarta1_MouseDown" />
                     <Image Height="100" Width="60" Margin="5" Name="btnCarta2" Source="Immagini/retro.png" MouseDown="btnCarta2_MouseDown" />
@@ -61,6 +65,7 @@
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Grid.Row="2">
                     <TextBlock Text="Punti di " FontSize="20" Width="125" />
                     <TextBlock Text="" Width="100" FontSize="20" Name="txtPuntiGiocatore" />
+                    <Button Content="Vai all'ultimo turno" Click="Button_Click_1" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Grid.Row="0">

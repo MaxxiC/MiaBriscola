@@ -101,13 +101,18 @@ namespace Conti.Massimiliano._5I.Briscola
 
         public Carta GetCentro2()
         {
-            Carta ret = null;
+            Carta ret = new Carta();
 
             Random rnd = new Random();
-            int n = rnd.Next(0, 2);
-            ret = CPU.MieCarte[n];
-            CPU.MieCarte.RemoveAt(n);
-            CPU.addCarta(new Carta());
+
+            while (ret.Seme == "")
+            {
+                int n = rnd.Next(0, 2);
+                ret = CPU.MieCarte[n];
+                CPU.MieCarte.RemoveAt(n);
+                CPU.addCarta(new Carta());
+            }
+            
 
 
             return ret;
@@ -115,6 +120,7 @@ namespace Conti.Massimiliano._5I.Briscola
 
         public void Continua()
         {
+
             if (GiocaGiocatore && C1.Seme == "")
                 return;
 
@@ -123,7 +129,7 @@ namespace Conti.Massimiliano._5I.Briscola
                 C2 = GetCentro2();
                 return;
             }
-
+            
             if (C2.Seme == "")
             {
                 C2 = GetCentro2();

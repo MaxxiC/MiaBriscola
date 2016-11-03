@@ -33,9 +33,10 @@ namespace Conti.Massimiliano._5I.Briscola
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            bw = new BackgroundWorker();
-            bw.DoWork += new DoWorkEventHandler(bw_DoWork);
-            bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(AggiornaImmagini);
+            IniziaPartita();
+            //bw = new BackgroundWorker();
+            //bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+            //bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(AggiornaImmagini);
         }
 
         private void IniziaPartita()
@@ -101,11 +102,11 @@ namespace Conti.Massimiliano._5I.Briscola
             int qw = Brscl.DopoConfronto();
 
             if (qw == 1)
-                MessageBox.Show("Vince " + txtNomeGiocatore.Text);
+                MessageBox.Show("Vince Giocatore");
             if (qw == 2)
                 MessageBox.Show("Vince CPU");
             if (qw == 3)
-                MessageBox.Show("Ultimo Turno vinto da " + txtNomeGiocatore.Text);
+                MessageBox.Show("Ultimo Turno vinto da Giocatore");
             if (qw == 4)
                 MessageBox.Show("Ultimo Turno vinto da CPU");
 
@@ -119,7 +120,7 @@ namespace Conti.Massimiliano._5I.Briscola
             if (qw > 2)
             {
                 if (Brscl.Ut1.Punteggio > Brscl.CPU.Punteggio)
-                    MessageBox.Show("Partita vinta da " + txtNomeGiocatore.Text + "   " + fine);
+                    MessageBox.Show("Partita vinta da Giocatore" + fine);
                 else
                     MessageBox.Show("Partita vinta da CPU" + fine);
 
@@ -129,17 +130,28 @@ namespace Conti.Massimiliano._5I.Briscola
             //bw.RunWorkerAsync();
         }
 
-        private void bw_DoWork(object sender, DoWorkEventArgs e)
-        {
-            BackgroundWorker worker = sender as BackgroundWorker;
-            Thread.Sleep(2000);
-        }
+        //private void bw_DoWork(object sender, DoWorkEventArgs e)
+        //{
+        //    BackgroundWorker worker = sender as BackgroundWorker;
+        //    Thread.Sleep(2000);
+        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            TabInizio.Visibility = Visibility.Hidden;
-            IniziaPartita();
-            TabPartita.Visibility = Visibility.Visible;
+            //TabInizio.Visibility = Visibility.Hidden;
+            //IniziaPartita();
+            //TabPartita.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            IsEnabled = false;
+            Random rnd = new Random();
+            for (int i = 0; i < 17; i++)
+            {
+                SelCarta(rnd.Next(0, 2));
+            }
+
         }
     }
 }

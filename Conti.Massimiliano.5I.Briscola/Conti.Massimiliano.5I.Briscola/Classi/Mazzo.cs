@@ -10,9 +10,11 @@ namespace Conti.Massimiliano._5I.Briscola
     {
         public string[] VttSemi = new string[] { "Denari", "Bastoni", "Coppe", "Spade" };
         public List<Carta> ListMazzo = new List<Carta>();
-        public List<Carta> MazzoRistretto = new List<Carta>();
+        //public List<Carta> MazzoRistretto = new List<Carta>();
 
         public int NCarteRimaste { get; set; }
+
+        private static Random rand = new Random();
 
 
         //Riempie il Mazzo per iniziare
@@ -42,22 +44,16 @@ namespace Conti.Massimiliano._5I.Briscola
 
             NCarteRimaste = 40;
         }
-
-
-
-
+        
         //Da le prime 3 carte agli utenti
         public List<Carta> GetCartaIniziale()
         {
             List<Carta> ritorno = new List<Carta>();
-
             for (int i = 0; i < 3; i++)
                 ritorno.Add(GetCarta());
 
             return ritorno;
         }
-
-        static Random rand = new Random();
 
         //Restituisce una carta del mazzo
         public Carta GetCarta()

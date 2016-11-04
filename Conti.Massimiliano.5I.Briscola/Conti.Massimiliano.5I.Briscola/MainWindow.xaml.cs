@@ -1,19 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Threading;
-using System.ComponentModel;
+using System.Windows.Threading;
 
 namespace Conti.Massimiliano._5I.Briscola
 {
@@ -26,10 +17,9 @@ namespace Conti.Massimiliano._5I.Briscola
         {
             InitializeComponent();
         }
-
-        private Briscola Brscl;
-        public BackgroundWorker bw;
-        static public Random rnd = new Random();
+        
+        private BriscolaCS Brscl;
+        //public BackgroundWorker bw;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -41,14 +31,21 @@ namespace Conti.Massimiliano._5I.Briscola
 
         private void IniziaPartita()
         {
-            Brscl = new Briscola();
+            Brscl = new BriscolaCS();
+            lblSemeBriscola.Content = "Briscola: \n" + Brscl.CardBriscola.Seme;
             AggiornaImmagini();
+            //string a = txtNomeGiocatore.Text;
         }
 
-        public void AggiornaImmagini(object sender = null, RunWorkerCompletedEventArgs e = null)
+        public void AggiornaImmagini(int n = 0)
         {
+            //object sender = null, RunWorkerCompletedEventArgs e = null
+
+            //if (n > 0)
+            //    await Task.Delay((n * 500));
+            
             //Carte nel mazzo
-            lblNcarte.Content = "                        " + Brscl.Mazzo1.NCarteRimaste.ToString();
+            lblNcarte.Content = Brscl.Mazzo1.NCarteRimaste.ToString() + " carte nel mazzo";
 
             //Le 3 carte del giocatore
             btnCarta1.Source = Brscl.Ut1.MieCarte[0].percorso;
@@ -60,9 +57,12 @@ namespace Conti.Massimiliano._5I.Briscola
             btnCentro2.Source = Brscl.C2.percorso;
 
             //3 Carte CPU
-            btnCPU1.Source = Brscl.CPU.MieCarte[0].percorso;
-            btnCPU2.Source = Brscl.CPU.MieCarte[1].percorso;
-            btnCPU3.Source = Brscl.CPU.MieCarte[2].percorso;
+            //btnCPU1.Source = Brscl.CPU.MieCarte[0].percorso;
+            //btnCPU2.Source = Brscl.CPU.MieCarte[1].percorso;
+            //btnCPU3.Source = Brscl.CPU.MieCarte[2].percorso;
+            btnCPU1.Source = Brscl.VttCarteCPU[0];
+            btnCPU2.Source = Brscl.VttCarteCPU[1];
+            btnCPU3.Source = Brscl.VttCarteCPU[2];
 
             //Briscola e Mazzo
             btnBriscola.Source = Brscl.CardBriscola.percorso;
@@ -71,6 +71,7 @@ namespace Conti.Massimiliano._5I.Briscola
             //Punteggi
             txtPuntiGiocatore.Text = Brscl.Ut1.Punteggio.ToString();
             txtPuntiCPU.Text = Brscl.CPU.Punteggio.ToString();
+
             return;
         }
 
@@ -89,69 +90,80 @@ namespace Conti.Massimiliano._5I.Briscola
             SelCarta(2);
         }
 
-        private void SelCarta(int nCarta, int nAzioni = 0)
+        private async void SelCarta(int nCarta, int nAzioni = 0)
         {
-            //bw.RunWorkerAsync();
+            btnCarta1.IsEnabled = false;
+            btnCarta2.IsEnabled = false;
+            btnCarta3.IsEnabled = false;
+
             Brscl.SetCentro1(nCarta);
             AggiornaImmagini();
 
             //si potrebbe aspettare 1 secondo
             Brscl.Continua();
+
+            if (nAzioni == 0)
+                await Task.Delay(500);
+
             AggiornaImmagini();
 
             int qw = Brscl.DopoConfronto();
 
+            //Stampa il nome del vincitore
             if (qw == 1)
-                MessageBox.Show("Vince Giocatore");
+                lblVinto.Content = "Vince Giocatore";
             if (qw == 2)
-                MessageBox.Show("Vince CPU");
+                lblVinto.Content = "Vince CPU";
             if (qw == 3)
                 MessageBox.Show("Ultimo Turno vinto da Giocatore");
             if (qw == 4)
                 MessageBox.Show("Ultimo Turno vinto da CPU");
 
+            if (nAzioni == 0)
+                await Task.Delay(500);
+
+            AggiornaImmagini();
             Brscl.Continua();
+
+            if (nAzioni == 0)
+                await Task.Delay(500);
+
             AggiornaImmagini();
 
             ////////////////////////////////
 
-            int punti = Brscl.Ut1.Punteggio + Brscl.CPU.Punteggio;
-            string fine = "tot. punti = " + punti.ToString();
+            if (Brscl.Mazzo1.NCarteRimaste < 25)
+                bbbtn.IsEnabled = false;
+
             if (qw > 2)
             {
+                int punti = Brscl.Ut1.Punteggio + Brscl.CPU.Punteggio;
+                string fine = "tot. punti = " + punti.ToString();
+
                 if (Brscl.Ut1.Punteggio > Brscl.CPU.Punteggio)
                     MessageBox.Show("Partita vinta da Giocatore" + fine);
                 else
                     MessageBox.Show("Partita vinta da CPU" + fine);
 
-
+                //Chiude la finestra e termina il programma
+                this.Close();
             }
+
+            btnCarta1.IsEnabled = true;
+            btnCarta2.IsEnabled = true;
+            btnCarta3.IsEnabled = true;
 
             //bw.RunWorkerAsync();
         }
 
-        //private void bw_DoWork(object sender, DoWorkEventArgs e)
-        //{
-        //    BackgroundWorker worker = sender as BackgroundWorker;
-        //    Thread.Sleep(2000);
-        //}
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //TabInizio.Visibility = Visibility.Hidden;
-            //IniziaPartita();
-            //TabPartita.Visibility = Visibility.Visible;
-        }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            IsEnabled = false;
+            bbbtn.IsEnabled = false;
             Random rnd = new Random();
-            for (int i = 0; i < 17; i++)
+            for (int i = 0; i < 15; i++)
             {
-                SelCarta(rnd.Next(0, 2));
+                SelCarta(rnd.Next(0, 2), 1);
             }
-
         }
     }
 }

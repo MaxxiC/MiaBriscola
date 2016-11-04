@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 
 namespace Conti.Massimiliano._5I.Briscola
 {
-    class Briscola
+    class BriscolaCS
     {
         public Mazzo Mazzo1 { get; }
         public Utente Ut1 { get; }
@@ -20,6 +20,8 @@ namespace Conti.Massimiliano._5I.Briscola
         public Carta C1 { get; set; }
         public Carta C2 { get; set; }
         public Carta CardBriscola { get; set; }
+
+        public BitmapImage[] VttCarteCPU { get; }
         public BitmapImage PercorsoVuoto { get; set; }
         public BitmapImage PercorsoMazzo { get; set; }
 
@@ -31,7 +33,7 @@ namespace Conti.Massimiliano._5I.Briscola
 
 
 
-        public Briscola()
+        public BriscolaCS()
         {
             Mazzo1 = new Mazzo();
             Ut1 = new Utente(Mazzo1.GetCartaIniziale());
@@ -44,6 +46,11 @@ namespace Conti.Massimiliano._5I.Briscola
 
             PercorsoVuoto = new BitmapImage(new Uri("/Immagini/retro.png", UriKind.Relative));
             PercorsoMazzo = PercorsoVuoto;
+
+            VttCarteCPU = new BitmapImage[3];
+            VttCarteCPU[0] = PercorsoVuoto;
+            VttCarteCPU[1] = PercorsoVuoto;
+            VttCarteCPU[2] = PercorsoVuoto;
 
             GiocaGiocatore = true;
 
@@ -102,9 +109,7 @@ namespace Conti.Massimiliano._5I.Briscola
         public Carta GetCentro2()
         {
             Carta ret = new Carta();
-
             Random rnd = new Random();
-
             while (ret.Seme == "")
             {
                 int n = rnd.Next(0, 2);
@@ -112,8 +117,14 @@ namespace Conti.Massimiliano._5I.Briscola
                 CPU.MieCarte.RemoveAt(n);
                 CPU.addCarta(new Carta());
             }
-            
 
+            //copre le carte della CPU
+            if (NUltimoTurno == 1)
+                VttCarteCPU[2] = null;
+            if (NUltimoTurno == 2)
+                VttCarteCPU[1] = null;
+            if (NUltimoTurno == 3)
+                VttCarteCPU[0] = null;
 
             return ret;
         }
@@ -129,7 +140,12 @@ namespace Conti.Massimiliano._5I.Briscola
                 C2 = GetCentro2();
                 return;
             }
-            
+
+            if (CPU.MieCarte[0].Seme == "" && CPU.MieCarte[1].Seme == "" && CPU.MieCarte[2].Seme == "")
+            {
+                return;
+            }
+
             if (C2.Seme == "")
             {
                 C2 = GetCentro2();
@@ -199,34 +215,30 @@ namespace Conti.Massimiliano._5I.Briscola
                 }
                 CardBriscola.percorso = null;
                 PercorsoMazzo = null;
-
-                
             }
 
-            //fa si di fare gli ultimi 3 turni senza errori
-            if (NUltimoTurno > 2)
-            {
-                for (int i = 0; i < 2; i++)
-                    if (CPU.MieCarte[i].Seme == "")
-                    {
-                        CPU.MieCarte.RemoveAt(i);
-                        CPU.addCarta(new Carta());
-                    }
+            ////fa si di fare gli ultimi 3 turni senza errori
+            //if (NUltimoTurno > 2)
+            //{
+            //    //for (int i = 0; i < 2; i++)
+            //    //    if (CPU.MieCarte[i].Seme == "")
+            //    //    {
+            //    //        CPU.MieCarte.RemoveAt(i);
+            //    //        CPU.addCarta(new Carta());
+            //    //    }
+            //    //for (int i = 0; i < 2; i++)
+            //    //    if (Ut1.MieCarte[i].Seme == "")
+            //    //    {
+            //    //        Ut1.MieCarte.RemoveAt(i);
+            //    //        Ut1.addCarta(new Carta());
+            //    //    }
+            //    //if (iovinco)
+            //    //    Ut1.MieCarte[2].percorso = perc;
+            //    //else
+            //    //    CPU.MieCarte[2].percorso = perc;
+            //}
 
-                for (int i = 0; i < 2; i++)
-                    if (Ut1.MieCarte[i].Seme == "")
-                    {
-                        Ut1.MieCarte.RemoveAt(i);
-                        Ut1.addCarta(new Carta());
-                    }
-
-                //if (iovinco)
-                //    Ut1.MieCarte[2].percorso = perc;
-                //else
-                //    CPU.MieCarte[2].percorso = perc;
-            }
-
-            //AzzeraSfondoCPU();
+            ////AzzeraSfondoCPU();
 
             if (iovinco)
             {
@@ -241,10 +253,8 @@ namespace Conti.Massimiliano._5I.Briscola
                 ret = 2;
             }
 
-            if (NUltimoTurno > 3)
-            {
+            if (NUltimoTurno == 4)
                 ret += 2;
-            }
 
             return ret;
         }

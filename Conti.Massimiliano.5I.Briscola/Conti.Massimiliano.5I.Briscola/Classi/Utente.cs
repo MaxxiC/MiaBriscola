@@ -10,12 +10,7 @@ namespace Conti.Massimiliano._5I.Briscola
     class Utente
     {
         public int Punteggio { get; set; }
-
         public List<Carta> MieCarte = new List<Carta>();
-
-
-
-
 
         public Utente()
         { }

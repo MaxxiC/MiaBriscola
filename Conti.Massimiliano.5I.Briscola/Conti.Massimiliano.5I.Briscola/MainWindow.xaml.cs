@@ -17,7 +17,7 @@ namespace Conti.Massimiliano._5I.Briscola
         {
             InitializeComponent();
         }
-        
+
         private BriscolaCS Brscl;
         //public BackgroundWorker bw;
 
@@ -43,7 +43,7 @@ namespace Conti.Massimiliano._5I.Briscola
 
             //if (n > 0)
             //    await Task.Delay((n * 500));
-            
+
             //Carte nel mazzo
             lblNcarte.Content = Brscl.Mazzo1.NCarteRimaste.ToString() + " carte nel mazzo";
 

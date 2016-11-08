@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
 namespace Conti.Massimiliano._5I.Briscola
@@ -28,7 +22,7 @@ namespace Conti.Massimiliano._5I.Briscola
 
 
         private bool GiocaGiocatore { get; set; }
-        private bool UltimoTurno { get; set; }
+        //private bool UltimoTurno { get; set; }
         private int NUltimoTurno { get; set; }
 
 
@@ -196,7 +190,7 @@ namespace Conti.Massimiliano._5I.Briscola
             }
             else
             {
-                UltimoTurno = true;
+                //UltimoTurno = true;
                 NUltimoTurno++;
             }
 
@@ -237,7 +231,6 @@ namespace Conti.Massimiliano._5I.Briscola
             //    //else
             //    //    CPU.MieCarte[2].percorso = perc;
             //}
-
             ////AzzeraSfondoCPU();
 
             if (iovinco)

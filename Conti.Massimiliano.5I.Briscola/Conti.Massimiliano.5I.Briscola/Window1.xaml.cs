@@ -11,11 +11,23 @@ namespace Conti.Massimiliano._5I.Briscola
         public Window1()
         {
             InitializeComponent();
+            string[] vtt = { "Piacentine", "Napoletane" };
+            cmb.ItemsSource = vtt;
+            cmb.SelectedIndex = 0;
         }
+
+        public string nome { get; set; }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Window Finestra = new Conti.Massimiliano._5I.Briscola.MainWindow();
+            if (txtNome.Text == "")
+            {
+                MessageBox.Show("Inserire un nome");
+                txtNome.Text = "ciao";
+                return;
+            }
+
+            Window Finestra = new Conti.Massimiliano._5I.Briscola.MainWindow(txtNome.Text, cmb.SelectedItem.ToString());
             Hide();
             Finestra.ShowDialog();
             Close();

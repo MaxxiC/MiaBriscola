@@ -26,7 +26,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="Immagini/sfondo.jpg" />
+            <ImageBrush ImageSource="/sfondo.jpg" />
         </Grid.Background>
 
         <Grid.RowDefinitions>
@@ -67,14 +67,14 @@
         </StackPanel>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Grid.Row="2">
-            <TextBlock Text="Punti di " FontSize="20" Width="125" />
-            <TextBlock Text="" Width="100" FontSize="20" Name="txtPuntiGiocatore" />
-            <Button Name="bbbtn" Content="Vai all'ultimo turno" Click="Button_Click_1" />
+            <TextBlock Text="Punti di " FontSize="20" Width="Auto" Name="txtNomeGiocatore" />
+            <TextBlock Text="" Width="100" FontSize="20" Name="txtPuntiGiocatore" TextAlignment="Center" />
+            <!--<Button Name="bbbtn" Content="Vai all'ultimo turno" Click="Button_Click_1" />-->
         </StackPanel>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Grid.Row="0">
-            <TextBlock Text="Punti di " FontSize="20" Width="125" />
-            <TextBlock Text="" Width="100" FontSize="20" Name="txtPuntiCPU" />
+            <TextBlock Text="Punti CPU" FontSize="20" Width="Auto" />
+            <TextBlock Text="" Width="100" FontSize="20" Name="txtPuntiCPU" TextAlignment="Center"/>
         </StackPanel>
     </Grid>
 </Window>

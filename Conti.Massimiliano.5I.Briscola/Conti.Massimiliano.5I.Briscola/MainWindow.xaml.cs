@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Threading;
-using System.Windows.Threading;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Conti.Massimiliano._5I.Briscola
 {
@@ -13,16 +12,20 @@ namespace Conti.Massimiliano._5I.Briscola
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(string nm, string idxMaz)
         {
             InitializeComponent();
+            NomeGiocatore = nm;
+            strMazzo = idxMaz;
         }
 
         private BriscolaCS Brscl;
-        //public BackgroundWorker bw;
+        private string NomeGiocatore;
+        private string strMazzo;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            txtNomeGiocatore.Text = txtNomeGiocatore.Text + NomeGiocatore;
             IniziaPartita();
             //bw = new BackgroundWorker();
             //bw.DoWork += new DoWorkEventHandler(bw_DoWork);
@@ -31,7 +34,7 @@ namespace Conti.Massimiliano._5I.Briscola
 
         private void IniziaPartita()
         {
-            Brscl = new BriscolaCS();
+            Brscl = new BriscolaCS(strMazzo);
             lblSemeBriscola.Content = "Briscola: \n" + Brscl.CardBriscola.Seme;
             AggiornaImmagini();
             //string a = txtNomeGiocatore.Text;
@@ -39,11 +42,6 @@ namespace Conti.Massimiliano._5I.Briscola
 
         public void AggiornaImmagini(int n = 0)
         {
-            //object sender = null, RunWorkerCompletedEventArgs e = null
-
-            //if (n > 0)
-            //    await Task.Delay((n * 500));
-
             //Carte nel mazzo
             lblNcarte.Content = Brscl.Mazzo1.NCarteRimaste.ToString() + " carte nel mazzo";
 
@@ -92,6 +90,7 @@ namespace Conti.Massimiliano._5I.Briscola
 
         private async void SelCarta(int nCarta, int nAzioni = 0)
         {
+            //disabilita per sicurezza le carte
             btnCarta1.IsEnabled = false;
             btnCarta2.IsEnabled = false;
             btnCarta3.IsEnabled = false;
@@ -99,32 +98,35 @@ namespace Conti.Massimiliano._5I.Briscola
             Brscl.SetCentro1(nCarta);
             AggiornaImmagini();
 
-            //si potrebbe aspettare 1 secondo
             Brscl.Continua();
 
+            //per dare una sensazione di realta aspetta 500 millisecondi
             if (nAzioni == 0)
                 await Task.Delay(500);
 
             AggiornaImmagini();
 
+            //decide il vincitore
             int qw = Brscl.DopoConfronto();
 
             //Stampa il nome del vincitore
             if (qw == 1)
-                lblVinto.Content = "Vince Giocatore";
+                lblVinto.Content = "Vince " + NomeGiocatore;
             if (qw == 2)
                 lblVinto.Content = "Vince CPU";
             if (qw == 3)
-                MessageBox.Show("Ultimo Turno vinto da Giocatore");
+                MessageBox.Show("Ultimo Turno vinto da " + NomeGiocatore);
             if (qw == 4)
                 MessageBox.Show("Ultimo Turno vinto da CPU");
 
+            //aspetta
             if (nAzioni == 0)
                 await Task.Delay(500);
 
             AggiornaImmagini();
             Brscl.Continua();
 
+            //aspetta
             if (nAzioni == 0)
                 await Task.Delay(500);
 
@@ -132,8 +134,8 @@ namespace Conti.Massimiliano._5I.Briscola
 
             ////////////////////////////////
 
-            if (Brscl.Mazzo1.NCarteRimaste < 25)
-                bbbtn.IsEnabled = false;
+            //if (Brscl.Mazzo1.NCarteRimaste < 25)
+            //    bbbtn.IsEnabled = false;
 
             if (qw > 2)
             {
@@ -141,14 +143,15 @@ namespace Conti.Massimiliano._5I.Briscola
                 string fine = "tot. punti = " + punti.ToString();
 
                 if (Brscl.Ut1.Punteggio > Brscl.CPU.Punteggio)
-                    MessageBox.Show("Partita vinta da Giocatore" + fine);
+                    MessageBox.Show("Partita vinta da " + NomeGiocatore + "\n" + fine);
                 else
-                    MessageBox.Show("Partita vinta da CPU" + fine);
+                    MessageBox.Show("Partita vinta da CPU \n" + fine);
 
                 //Chiude la finestra e termina il programma
                 this.Close();
             }
 
+            //Riabilita le carte
             btnCarta1.IsEnabled = true;
             btnCarta2.IsEnabled = true;
             btnCarta3.IsEnabled = true;
@@ -158,7 +161,7 @@ namespace Conti.Massimiliano._5I.Briscola
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            bbbtn.IsEnabled = false;
+            //bbbtn.IsEnabled = false;
             Random rnd = new Random();
             for (int i = 0; i < 15; i++)
             {

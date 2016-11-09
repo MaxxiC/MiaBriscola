@@ -9,7 +9,8 @@
     <Grid>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content=" Benvenuto " Margin="15" />
-            <!--<TextBox Text="Giocatore1" Margin="10" Name="txtNomeGiocatore" />-->
+            <TextBox Text="Giocatore1" Margin="10" Name="txtNome" />
+            <ComboBox Name="cmb" />
             <Button Content="Inizia Partita" Margin="5" Click="Button_Click"/>
         </StackPanel>
     </Grid>

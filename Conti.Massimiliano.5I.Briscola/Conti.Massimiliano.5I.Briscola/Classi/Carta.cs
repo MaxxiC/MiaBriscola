@@ -8,10 +8,9 @@ namespace Conti.Massimiliano._5I.Briscola
         public string Seme { get; set; }
         public int Numero { get; set; }
         public bool Usata { get; set; }
-
         public int Valore { get; set; }
-
         public BitmapImage percorso { get; set; }
+        public string nmMazzo { get; set; }
 
 
         public Carta()
@@ -21,8 +20,9 @@ namespace Conti.Massimiliano._5I.Briscola
             Valore = 0;
             percorso = null;
         }
-        public Carta(string sm, int vl)
+        public Carta(string sm, int vl, string nomeMazzo)
         {
+            nmMazzo = nomeMazzo;
             Seme = sm;
             Numero = vl;
 
@@ -51,7 +51,7 @@ namespace Conti.Massimiliano._5I.Briscola
                 }
             }
 
-            string imgCard = "/Immagini/" + Seme + " (" + Numero.ToString() + ").png";
+            string imgCard = "/" + nomeMazzo + "/" + Seme + " (" + Numero.ToString() + ").png";
             //pack://siteoforigin:,,,
             percorso = new BitmapImage(new Uri(imgCard, UriKind.Relative));
         }

@@ -16,7 +16,7 @@ namespace Conti.Massimiliano._5I.Briscola
 
 
         //Riempie il Mazzo per iniziare
-        public Mazzo()
+        public Mazzo(string nomeMazzo)
         {
             int n = 1;
             for (int i = 0; i < 4; i++)
@@ -24,7 +24,7 @@ namespace Conti.Massimiliano._5I.Briscola
                 n = 1;
                 for (int d = 0; d < 10; d++)
                 {
-                    ListMazzo.Add(new Carta(VttSemi[i], n++));
+                    ListMazzo.Add(new Carta(VttSemi[i], n++, nomeMazzo));
                 }
             }
 
@@ -42,7 +42,7 @@ namespace Conti.Massimiliano._5I.Briscola
 
             NCarteRimaste = 40;
         }
-        
+
         //Da le prime 3 carte agli utenti
         public List<Carta> GetCartaIniziale()
         {

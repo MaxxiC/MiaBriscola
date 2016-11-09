@@ -27,9 +27,9 @@ namespace Conti.Massimiliano._5I.Briscola
 
 
 
-        public BriscolaCS()
+        public BriscolaCS(string nomeMazzo)
         {
-            Mazzo1 = new Mazzo();
+            Mazzo1 = new Mazzo(nomeMazzo);
             Ut1 = new Utente(Mazzo1.GetCartaIniziale());
             CPU = new Utente(Mazzo1.GetCartaIniziale());
 
@@ -38,7 +38,7 @@ namespace Conti.Massimiliano._5I.Briscola
 
             GetBriscola();
 
-            PercorsoVuoto = new BitmapImage(new Uri("/Immagini/retro.png", UriKind.Relative));
+            PercorsoVuoto = new BitmapImage(new Uri("/" + nomeMazzo + "/retro.png", UriKind.Relative));
             PercorsoMazzo = PercorsoVuoto;
 
             VttCarteCPU = new BitmapImage[3];
@@ -199,12 +199,12 @@ namespace Conti.Massimiliano._5I.Briscola
             {
                 if (iovinco)
                 {
-                    Ut1.MieCarte[2] = new Carta(CardBriscola.Seme, CardBriscola.Numero);
+                    Ut1.MieCarte[2] = new Carta(CardBriscola.Seme, CardBriscola.Numero, CardBriscola.nmMazzo);
                     CPU.MieCarte[2] = Mazzo1.GetCarta();
                 }
                 else
                 {
-                    CPU.MieCarte[2] = new Carta(CardBriscola.Seme, CardBriscola.Numero);
+                    CPU.MieCarte[2] = new Carta(CardBriscola.Seme, CardBriscola.Numero, CardBriscola.nmMazzo);
                     Ut1.MieCarte[2] = Mazzo1.GetCarta();
                 }
                 CardBriscola.percorso = null;

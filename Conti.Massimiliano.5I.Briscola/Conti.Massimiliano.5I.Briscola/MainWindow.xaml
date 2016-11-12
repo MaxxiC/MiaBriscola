@@ -5,26 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Conti.Massimiliano._5I.Briscola"
         mc:Ignorable="d"
-        Title="Conti Massimiliano 5I Briscola"  Height="550"    Width="725"
-                                             MinHeight="550" MinWidth="725"
+        Title="Conti Massimiliano 5I Briscola"  Height="575"    Width="750"
+                                             MinHeight="575" MinWidth="750"
         WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
-
-    <!--<TabItem Name="TabInizio" Visibility="Hidden">
-            <Grid>
-                <Grid.Background>
-                    <ImageBrush ImageSource="Immagini/sfondo.jpg" />
-                </Grid.Background>
-
-                <StackPanel HorizontalAlignment="Center" Orientation="Vertical" VerticalAlignment="Center">
-                    <Label Content="Inserisci il tuo nome:" FontSize="20"/>
-                    <TextBox Width="150" Name="txtNomeGiocatore" Text="Giocatore1" />
-                    <Button Width="100" Content="Inizia Partita" Click="Button_Click" />
-                </StackPanel>
-            </Grid>
-        </TabItem>-->
-    <!--<TabItem Name="TabPartita" Visibility="Visible">-->
-
-    <Grid>
+    <Grid Name="grd1">
         <Grid.Background>
             <ImageBrush ImageSource="/sfondo.jpg" />
         </Grid.Background>
@@ -35,46 +19,46 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
-            <Image Height="100" Width="60" Margin="5" Source="Immagini/retro.png" Name="btnCPU1" />
-            <Image Height="100" Width="60" Margin="5" Source="Immagini/retro.png" Name="btnCPU2" />
-            <Image Height="100" Width="60" Margin="5" Source="Immagini/retro.png" Name="btnCPU3" />
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0" Margin="5">
+            <Image Margin="15" Name="btnCPU1" />
+            <Image Margin="15" Name="btnCPU2" />
+            <Image Margin="15" Name="btnCPU3" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Grid.Row="0" Margin="5">
+            <TextBlock Text="Punti CPU" FontSize="20" Width="Auto" />
+            <TextBlock Text="" Width="100" FontSize="20" Name="txtPuntiCPU" TextAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="1">
-            <StackPanel Orientation="Vertical">
-                <Label Content="" Name="lblNcarte" FontSize="12"/>
-                <Label Name="lblSemeBriscola" />
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Height="Auto" Grid.Row="1" Margin="5">
+            
+            <StackPanel Orientation="Horizontal">
+                <Image Margin="5" Name="btnMazzo" />
+                <Image Margin="5" Name="btnBriscola"/>
             </StackPanel>
-            <Image Height="120" Width="80" Margin="3" Name="btnMazzo" />
-            <Image Height="100" Width="60" Margin="3" Name="btnBriscola"/>
-
+            <StackPanel Orientation="Horizontal" Height="Auto">
+                <Label Content="" Name="lblNcarte" FontSize="12"/>
+            </StackPanel>
         </StackPanel>
-
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
-            <Image Height="100" Width="60" Margin="5" Name="btnCentro1"/>
-            <Image Height="100" Width="60" Margin="5" Name="btnCentro2"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Margin="5">
+            <Image Margin="15" Name="btnCentro1"/>
+            <Image Margin="15" Name="btnCentro2"/>
         </StackPanel>
-
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Margin="5">
             <Label Content="" Name="lblVinto" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
-            <Image Height="100" Width="60" Margin="5" Name="btnCarta1" Source="Immagini/retro.png" MouseDown="btnCarta1_MouseDown" />
-            <Image Height="100" Width="60" Margin="5" Name="btnCarta2" Source="Immagini/retro.png" MouseDown="btnCarta2_MouseDown" />
-            <Image Height="100" Width="60" Margin="5" Name="btnCarta3" Source="Immagini/retro.png" MouseDown="btnCarta3_MouseDown" />
-        </StackPanel>
 
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Grid.Row="2">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Margin="5">
+            <Image Margin="15" Name="btnCarta1" MouseDown="btnCarta1_MouseDown" />
+            <Image Margin="15" Name="btnCarta2" MouseDown="btnCarta2_MouseDown" />
+            <Image Margin="15" Name="btnCarta3" MouseDown="btnCarta3_MouseDown" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Grid.Row="2" Margin="5">
             <TextBlock Text="Punti di " FontSize="20" Width="Auto" Name="txtNomeGiocatore" />
             <TextBlock Text="" Width="100" FontSize="20" Name="txtPuntiGiocatore" TextAlignment="Center" />
             <!--<Button Name="bbbtn" Content="Vai all'ultimo turno" Click="Button_Click_1" />-->
-        </StackPanel>
-
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Grid.Row="0">
-            <TextBlock Text="Punti CPU" FontSize="20" Width="Auto" />
-            <TextBlock Text="" Width="100" FontSize="20" Name="txtPuntiCPU" TextAlignment="Center"/>
         </StackPanel>
     </Grid>
 </Window>

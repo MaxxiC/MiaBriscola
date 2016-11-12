@@ -35,7 +35,7 @@ namespace Conti.Massimiliano._5I.Briscola
         private void IniziaPartita()
         {
             Brscl = new BriscolaCS(strMazzo);
-            lblSemeBriscola.Content = "Briscola: \n" + Brscl.CardBriscola.Seme;
+            //lblSemeBriscola.Content = "Briscola: \n" + Brscl.CardBriscola.Seme;
             AggiornaImmagini();
             //string a = txtNomeGiocatore.Text;
         }
@@ -43,7 +43,7 @@ namespace Conti.Massimiliano._5I.Briscola
         public void AggiornaImmagini(int n = 0)
         {
             //Carte nel mazzo
-            lblNcarte.Content = Brscl.Mazzo1.NCarteRimaste.ToString() + " carte nel mazzo";
+            lblNcarte.Content = Brscl.Mazzo1.NCarteRimaste.ToString() + " carte";
 
             //Le 3 carte del giocatore
             btnCarta1.Source = Brscl.Ut1.MieCarte[0].percorso;
@@ -148,8 +148,12 @@ namespace Conti.Massimiliano._5I.Briscola
                     MessageBox.Show("Partita vinta da CPU \n" + fine);
 
                 //Chiude la finestra e termina il programma
-                this.Close();
+                //this.Close();
+                Chiusura();
+                return;
             }
+
+            grd1 = new System.Windows.Controls.Grid();
 
             //Riabilita le carte
             btnCarta1.IsEnabled = true;
@@ -157,6 +161,11 @@ namespace Conti.Massimiliano._5I.Briscola
             btnCarta3.IsEnabled = true;
 
             //bw.RunWorkerAsync();
+        }
+
+        private void Chiusura()
+        {
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
